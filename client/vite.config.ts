@@ -7,7 +7,6 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
   registerType: 'autoUpdate',
   includeAssets: ['favicon-32x32.png', 'apple-touch-icon.png'],
   manifest: {
-
     "name": "News Reader App",
     "short_name": "NewsReader",
     "description": "A modern news reading application",
@@ -39,7 +38,23 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
         type: 'image/png',
         purpose: 'maskable'
       }
-    ]
+    ],
+    scope: "/",
+    categories: ["news"],
+    screenshots: [
+      {
+        src: "screenshot1.png",
+        sizes: "750x1334",
+        type: "image/png",
+        form_factor: "narrow",
+        label: "News Reader App"
+      }
+    ],
+    prefer_related_applications: false
+  },
+  workbox: {
+    navigateFallback: '/',
+    globPatterns: ['**/*.{js,css,html,ico,png,svg,json}']
   }
 }
 
