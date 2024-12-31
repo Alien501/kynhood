@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id        String   @id @default(cuid()) @map("_id")
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    String?
+  News      News?    @relation(fields: [newsId], references: [id])
+  newsId    String?
+}
+
+model User {
+  id           String     @id @default(cuid()) @map("_id")
+  email        String     @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  ingterest    Category[]
+  bookmarks    News[]
+}
+
+model News {
+  id            String     @id @default(cuid()) @map("_id")
+  title         String
+  content       String
+  category      Category[]
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  authors       String[]
+  source        String[]
+  datePublished DateTime
+  description   String
+  url           String
+  User          User?      @relation(fields: [userId], references: [id])
+  userId        String?
+}
