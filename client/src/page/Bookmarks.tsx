@@ -1,7 +1,6 @@
-import PageHeader from "@/components/custom/PageHeader";
-import StackedNewsCarousel from "@/components/custom/stacked-news-caurosel";
-import Categories from "@/components/custom/categories";
 import HomeNewsCard from "@/components/custom/HomeNewsCard";
+import PageHeader from "@/components/custom/PageHeader";
+import { useEffect } from "react";
 
 const newsItems = [
     {
@@ -66,28 +65,31 @@ const newsItems = [
     }
 ]
 
-const HomePage = () => {
+const BookmarksPage = () => {
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
     return (
-        <>
+        <div>
             <PageHeader
-                title="Good Morning"
-                subtitle="Stay updated with the latest news"
+                title="Bookmarks"
+                subtitle="Your saved articles"
             />
-            <StackedNewsCarousel items={newsItems} />
-            <Categories />
             {
-                newsItems.map(newsitem => (
+                newsItems.map((newsItem) => (
                     <HomeNewsCard
-                        title={newsitem.title}
+                        variant="bookmark"
+                        title={newsItem.title}
                         minutes={10}
-                        imageUrl={newsitem.imageUrl}
-                        time='Today'
+                        imageUrl={newsItem.imageUrl}
+                        time="Yesterday"
                     />
                 ))
             }
             <br /><br /><br />
-        </>
+        </div>
     )
-};
+}
 
-export default HomePage;
+export default BookmarksPage;

@@ -2,9 +2,11 @@ import { Button } from '@/components/ui/button';
 import { BookmarkIconOutline, BookmarkIconSolid, FireIconeSolid, FireIconOutline, HomeIconOutline, HomeIconSolid, UserIconOutline, UserIconSolid } from './icon';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const BottomNavbar = () => {
     const [currentPath, setCurrentPath] = useState('/');
+    const navigate = useNavigate();
 
     useEffect(() => {
         setCurrentPath(window.location.pathname);
@@ -13,8 +15,9 @@ const BottomNavbar = () => {
         return () => window.removeEventListener('popstate', handlePathChange);
     }, []);
 
-    const handleNavigation = (path) => {
-        window.history.pushState({}, '', path);
+    const handleNavigation = (path: string) => {
+        navigate(path);
+        // window.history.pushState({}, '', path);
         setCurrentPath(path);
     };
 

@@ -1,7 +1,8 @@
-import PageHeader from "@/components/custom/PageHeader";
-import StackedNewsCarousel from "@/components/custom/stacked-news-caurosel";
 import Categories from "@/components/custom/categories";
 import HomeNewsCard from "@/components/custom/HomeNewsCard";
+import PageHeader from "@/components/custom/PageHeader";
+// import StackedNewsCarousel from "@/components/custom/stacked-news-caurosel";
+import { useEffect } from "react";
 
 const newsItems = [
     {
@@ -66,22 +67,26 @@ const newsItems = [
     }
 ]
 
-const HomePage = () => {
-    return (
+const TrendingPage = () => {
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    })
+    return(
         <>
             <PageHeader
-                title="Good Morning"
-                subtitle="Stay updated with the latest news"
-            />
-            <StackedNewsCarousel items={newsItems} />
+                title="Trending"
+                subtitle="Stay updated with the latest trends"
+            />  
             <Categories />
             {
-                newsItems.map(newsitem => (
+                newsItems.map((newsItem) => (
                     <HomeNewsCard
-                        title={newsitem.title}
+                        variant="trending"
+                        title={newsItem.title}
                         minutes={10}
-                        imageUrl={newsitem.imageUrl}
-                        time='Today'
+                        imageUrl={newsItem.imageUrl}
+                        time="Yesterday"
                     />
                 ))
             }
@@ -90,4 +95,4 @@ const HomePage = () => {
     )
 };
 
-export default HomePage;
+export default TrendingPage;
