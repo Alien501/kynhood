@@ -1,52 +1,30 @@
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
-import Categories from './components/custom/categories'
-import PageHeader from './components/custom/PageHeader'
-import StackedNewsCarousel from './components/custom/stacked-news-caurosel'
 import Topbar from './components/custom/Topbar'
+import HomePage from './page/Home'
+import ReadPage from './page/ReadPage'
 
-const newsItems = [
-  {
-    id: "1",
-    title: "Covid-19: ICMR studying vaccine effect on Delta plus, result likely soon",
-    imageUrl: "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg",
-    href: "#"
-  },
-  {
-    id: "2",
-    title: "New research shows promising results in cancer treatment",
-    imageUrl: "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg",
-    href: "#"
-  },
-  {
-    id: "3",
-    title: "Climate change: Global temperatures hit new record high",
-    imageUrl: "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg",
-    href: "#"
-  },
-  {
-    id: "4",
-    title: "Space exploration: New discoveries on Mars surface",
-    imageUrl: "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg",
-    href: "#"
-  },
-  {
-    id: "5",
-    title: "Technology: AI breakthroughs in medical diagnosis",
-    imageUrl: "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg",
-    href: "#"
-  }
-]
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <HomePage />,
+    },
+    {
+      path: '/home',
+      element: <HomePage />
+    },
+    {
+      path: '/read',
+      element: <ReadPage />
+    }
+  ])
 
   return (
     <>
-      <Topbar />
-      <main className='h-screen mt-20 font-satoshi'>
-        <PageHeader />
-        <StackedNewsCarousel items={newsItems} />
-        <Categories />
-      </main>
+      {/* <Topbar /> */}
+        <RouterProvider router={router} />
     </>
   )
 }

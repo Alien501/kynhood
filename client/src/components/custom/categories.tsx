@@ -21,31 +21,33 @@ const Categories = () => {
     };
 
     return (
-        <Carousel
-            setApi={setApi}
-            opts={{
-                loop: true,
-                align: "center"
-            }}
-            className="mt-10"
-        >
-            <CarouselContent className="w-full">
-                {categories.map((category, index) => (
-                    <CarouselItem key={category} className="basis-1/3 pl-6">
-                        <Card 
-                            className={`p-2 text-center font-bold rounded-full transition-colors duration-300 cursor-pointer ${
-                                selectedIndex === index 
-                                    ? "bg-black text-white" 
-                                    : "bg-white text-black hover:bg-gray-100"
-                            }`}
-                            onClick={() => handleCategoryClick(index)}
-                        >
-                            {category}
-                        </Card>
-                    </CarouselItem>
-                ))}
-            </CarouselContent>
-        </Carousel>
+        <div className="sticky top-20 z-40 bg-white py-4">
+            <Carousel
+                setApi={setApi}
+                opts={{
+                    loop: true,
+                    align: "center"
+                }}
+                // className="mt-10"
+            >
+                <CarouselContent className="w-full">
+                    {categories.map((category, index) => (
+                        <CarouselItem key={category} className="basis-1/3 pl-6">
+                            <Card 
+                                className={`p-2 text-center font-bold rounded-full transition-colors duration-300 cursor-pointer ${
+                                    selectedIndex === index 
+                                        ? "bg-black text-white" 
+                                        : "bg-white text-black hover:bg-gray-100"
+                                }`}
+                                onClick={() => handleCategoryClick(index)}
+                            >
+                                {category}
+                            </Card>
+                        </CarouselItem>
+                    ))}
+                </CarouselContent>
+            </Carousel>
+        </div>
     );
 };
 

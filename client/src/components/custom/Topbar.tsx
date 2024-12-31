@@ -3,7 +3,7 @@ import { MenuIcon, SearchIcon } from "./icon";
 
 const Topbar = () => {
     return(
-        <header className="flex justify-evenly items-center h-20 fixed left-0 top-0 right-0 bg-white">
+        <header className="z-50 shadow-sm flex justify-evenly items-center h-20 fixed left-0 top-0 right-0 bg-white backdrop-blur-sm">
             <div className="w-[80%]">
                 <div className="bg-slate-200 flex items-center space-x-1 rounded-lg">
                     <Input placeholder="Search news" className="font-semibold bg-transparent outline-none border-none active:border-none focus:border-none active:outline-none focus:outline-none" />
