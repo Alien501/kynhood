@@ -1,1 +1,6 @@
 /node_modules
+# Python virtual environment
+.venv/
+
+# Local environment variables
+news_analyser/.env
