@@ -3,6 +3,7 @@ import StackedNewsCarousel from "@/components/custom/stacked-news-caurosel";
 import Categories from "@/components/custom/categories";
 import HomeNewsCard from "@/components/custom/HomeNewsCard";
 import Topbar from "@/components/custom/Topbar";
+import BottomNavbar from "@/components/custom/BottomNavbar";
 
 const newsItems = [
     {
@@ -86,6 +87,7 @@ const HomePage = () => {
                     ))
                 }
             </main>
+            <BottomNavbar />
         </>
     )
 };
