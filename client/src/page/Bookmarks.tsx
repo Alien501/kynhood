@@ -1,3 +1,4 @@
+import CouldntFind from "@/components/custom/CouldntFind";
 import HomeNewsCard from "@/components/custom/HomeNewsCard";
 import PageHeader from "@/components/custom/PageHeader";
 import { useEffect } from "react";
@@ -77,6 +78,9 @@ const BookmarksPage = () => {
                 subtitle="Your saved articles"
             />
             {
+                newsItems.length == 0?
+                <CouldntFind />
+                :
                 newsItems.map((newsItem) => (
                     <HomeNewsCard
                         variant="bookmark"

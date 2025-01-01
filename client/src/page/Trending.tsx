@@ -1,4 +1,5 @@
 import Categories from "@/components/custom/categories";
+import CouldntFind from "@/components/custom/CouldntFind";
 import HomeNewsCard from "@/components/custom/HomeNewsCard";
 import PageHeader from "@/components/custom/PageHeader";
 // import StackedNewsCarousel from "@/components/custom/stacked-news-caurosel";
@@ -80,6 +81,9 @@ const TrendingPage = () => {
             />  
             <Categories />
             {
+                newsItems.length == 0?
+                <CouldntFind />
+                :
                 newsItems.map((newsItem) => (
                     <HomeNewsCard
                         variant="trending"

@@ -10,6 +10,7 @@ import LandingPage from './page/Landing'
 import NotFoundPage from './page/NotFoundPage'
 import NewAccountPage from './page/NewAccount'
 import { Toaster } from './components/ui/toaster'
+import ProtectedRoute from './components/custom/ProtectedRoute'
 
 
 function App() {
@@ -32,11 +33,11 @@ function App() {
         },
         {
           path: '/bookmarks',
-          element: <BookmarksPage />  
+          element: <ProtectedRoute><BookmarksPage /></ProtectedRoute>
         },
         {
           path: '/profile',
-          element: <ProfilePage />
+          element: <ProtectedRoute><ProfilePage /></ProtectedRoute>
         },
         {
           path: '/*',

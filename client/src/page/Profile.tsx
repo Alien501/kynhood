@@ -1,10 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useToast } from '@/hooks/use-toast'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { jwtDecode } from "jwt-decode";
+
 interface User {
   id: string
   email: string
@@ -28,6 +32,7 @@ const mockUser: User = {
 export default function ProfilePage() {
   const [user, setUser] = useState<User>(mockUser)
   const toast = useToast();
+  const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -42,12 +47,42 @@ export default function ProfilePage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log('Updated user:', user)
-    toast({
+    toast.toast({
       title: "Profile Updated",
       description: "Your profile has been successfully updated.",
-      status: "success",
     })
   }
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+        try {
+            const d = localStorage.getItem('token')
+            if(!d)
+                navigate('/landing')
+            // @ts-ignore
+            const token = jwtDecode(d)?.userId;
+
+            const res = await axios.get(`http://localhost:3000/api/v1/users/${token}`);
+            if(res.status == 200) {
+                const data = res.data;
+                setUser(prev => {
+                    return {
+                        ...prev,
+                        ...data
+                    }
+                });
+                console.log(data);
+            }
+        } catch (error) {
+            console.error(error)
+         toast.toast({
+            title: 'Login to continue'
+         })   
+        }
+    }
+
+    fetchUserData();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">

@@ -1,50 +1,98 @@
-# React + TypeScript + Vite
+# 📰 **News Aggregator PWA**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An intuitive **Progressive Web Application (PWA)** that aggregates local news from various sources, tailored to user preferences (Made for KYNHood Hackathon).
 
-Currently, two official plugins are available:
+⚠️ **Note:** Currently, the application is optimized only for **mobile screens**. It may not be fully responsive on larger screens.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 **Tech Stack**
 
-## Expanding the ESLint configuration
+### **Frontend:**
+- **React**: Component-based UI library
+- **TypeScript**: Static typing for robust code
+- **TailwindCSS**: Utility-first CSS framework
+- **Shadcn**: Modern UI components
+- **JWT Auth**: Secure authentication
+- **PWA Support**: Offline capabilities and app-like experience
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### **Backend:**
+- **Node.js**: JavaScript runtime
+- **Express.js**: Backend framework
+- **Zod**: Schema validation
+- **Prisma**: ORM for MongoDB
+- **MongoDB (Dockerized)**: NoSQL database
+- **Docker**: Containerization for backend services
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🛠️ **Setup Instructions**
+
+### **1. Clone the Repository**
+```bash
+git clone https://github.com/Alien501/kynhood.git
+cd kynhood
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### **2. Frontend Setup**
+```bash
+cd client
+npm install
+npm run dev
 ```
+- Access client at: **http://localhost:5173/**
+- Build for production:
+```bash
+npm run build
+```
+
+### **3. Backend Setup**
+```bash
+cd backend
+```
+1. **Start MongoDB Container:**
+```bash
+docker compose up -d --build
+```
+2. **Install Dependencies:**
+```bash
+cd server
+npm install
+npx prisma generate
+```
+3. **Start Server:**
+- For Development:
+```bash
+npm run dev
+```
+- For Production:
+```bash
+npm run start
+```
+
+---
+
+## 📷 **Project Overview**
+`Note: Only mobile screens where targeted while development`
+
+
+![Home Screen](/images/home.png)
+![Read Screen](/images/read.png)
+[![Demo Video](/images/demo.mp4)](/images/demo.mp4)
+
+---
+
+## 📄 **Manifest File**
+A `site.webmanifest` file is included for PWA support.
+
+---
+
+## 🤝 **Contributing**
+Contributions are welcome! Feel free to fork, open issues, or submit pull requests.
+
+---
+
+## 📜 **License**
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+🛡️ **Happy Coding!** 🚀✨

@@ -2,6 +2,7 @@ import PageHeader from "@/components/custom/PageHeader";
 import StackedNewsCarousel from "@/components/custom/stacked-news-caurosel";
 import Categories from "@/components/custom/categories";
 import HomeNewsCard from "@/components/custom/HomeNewsCard";
+import CouldntFind from "@/components/custom/CouldntFind";
 
 const newsItems = [
     {
@@ -76,6 +77,9 @@ const HomePage = () => {
             <StackedNewsCarousel items={newsItems} />
             <Categories />
             {
+                newsItems.length == 0?
+                <CouldntFind />
+                :
                 newsItems.map(newsitem => (
                     <HomeNewsCard
                         title={newsitem.title}
