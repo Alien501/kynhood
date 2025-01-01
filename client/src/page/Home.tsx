@@ -2,7 +2,7 @@ import PageHeader from "@/components/custom/PageHeader";
 import StackedNewsCarousel from "@/components/custom/stacked-news-caurosel";
 import Categories from "@/components/custom/categories";
 import HomeNewsCard from "@/components/custom/HomeNewsCard";
-import Topbar from "@/components/custom/Topbar";
+import CouldntFind from "@/components/custom/CouldntFind";
 
 const newsItems = [
     {
@@ -70,22 +70,26 @@ const newsItems = [
 const HomePage = () => {
     return (
         <>
-            <Topbar />
-            <main className='h-screen mt-20 font-satoshi'>
-                <PageHeader />
-                <StackedNewsCarousel items={newsItems} />
-                <Categories />
-                {
-                    newsItems.map(newsitem => (
-                        <HomeNewsCard
-                            title={newsitem.title}
-                            minutes={10}
-                            imageUrl={newsitem.imageUrl}
-                            time='Today'
-                        />
-                    ))
-                }
-            </main>
+            <PageHeader
+                title="Good Morning"
+                subtitle="Stay updated with the latest news"
+            />
+            <StackedNewsCarousel items={newsItems} />
+            <Categories />
+            {
+                newsItems.length == 0?
+                <CouldntFind />
+                :
+                newsItems.map(newsitem => (
+                    <HomeNewsCard
+                        title={newsitem.title}
+                        minutes={10}
+                        imageUrl={newsitem.imageUrl}
+                        time='Today'
+                    />
+                ))
+            }
+            <br /><br /><br />
         </>
     )
 };

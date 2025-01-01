@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id        String    @id @default(cuid()) @map("_id")
+  name      String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model User {
+  id            String    @id @default(cuid()) @map("_id")
+  email         String    @unique
+  passwordHash  String
+  name          String
+  location      String[]
+  interests     String[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model News {
+  id            String    @id @default(cuid()) @map("_id")
+  title         String
+  content       String
+  description   String
+  url           String
+  datePublished DateTime
+  authors       String[]
+  sources       String[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model UserInterests {
+  id          String    @id @default(cuid()) @map("_id")
+  userId      String
+  categoryId  String
+  assignedAt  DateTime  @default(now())
+
+  @@unique([userId, categoryId])
+}
+
+model UserBookmarks {
+  id          String    @id @default(cuid()) @map("_id")
+  userId      String
+  newsId      String
+  bookmarkedAt DateTime @default(now())
+
+  @@unique([userId, newsId])
+}
+
+model NewsCategories {
+  id          String    @id @default(cuid()) @map("_id")
+  newsId      String
+  categoryId  String
+  assignedAt  DateTime  @default(now())
+
+  @@unique([newsId, categoryId])
+}
