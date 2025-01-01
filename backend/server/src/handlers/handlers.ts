@@ -129,10 +129,12 @@ export const userHandlers = {
 export const newsHandlers = {
     async create(req: Request, res: Response) {
         try {
+            console.log(req.body);
             const data = NewsSchema.parse(req.body);
             const news = await prisma.news.create({ data });
             res.json(news);
         } catch (error) {
+            console.error(error)
             res.status(400).json({ error: 'Invalid news data' });
         }
     },

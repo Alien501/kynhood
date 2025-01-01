@@ -4,3 +4,4 @@
 
 # Local environment variables
 news_analyser/.env
+**/.env
