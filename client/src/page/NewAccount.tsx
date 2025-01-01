@@ -79,21 +79,21 @@ const NewAccountPage = () => {
       name,
       email,
       password,
-      location: selectedLocations.map(id => 
+      location: selectedLocations.map(id =>
         chennaiLocations.find(loc => loc.id === id)?.name
       ),
-      interests: selectedCategories.map(id => categories.map(cat => cat.id == id)?.name ),
+      interests: selectedCategories.map(id => categories.map(cat => cat.id == id)?.name),
     }
     try {
       const res = await axios.post('http://localhost:3000/api/v1/users', {
         ...data
       })
 
-      if(res.status === 200) {
+      if (res.status === 200) {
         const d = res.data();
         navigate('/');
       }
-    } catch(e) {
+    } catch (e) {
       console.error(e);
     }
   }
@@ -120,7 +120,7 @@ const NewAccountPage = () => {
                 placeholder="Enter your name"
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="email" className="text-sm font-medium">Email</Label>
               <Input
@@ -155,8 +155,8 @@ const NewAccountPage = () => {
                 </SelectTrigger>
                 <SelectContent>
                   {chennaiLocations.map((location) => (
-                    <SelectItem 
-                      key={location.id} 
+                    <SelectItem
+                      key={location.id}
                       value={location.id}
                       disabled={selectedLocations.includes(location.id)}
                     >
@@ -211,8 +211,8 @@ const NewAccountPage = () => {
               </div>
             </div>
 
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               className="w-full bg-black text-white hover:bg-gray-800 transition-colors"
             >
               Create Account

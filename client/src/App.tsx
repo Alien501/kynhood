@@ -9,6 +9,7 @@ import ProfilePage from './page/Profile'
 import LandingPage from './page/Landing'
 import NotFoundPage from './page/NotFoundPage'
 import NewAccountPage from './page/NewAccount'
+import { Toaster } from './components/ui/toaster'
 
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
+      <Toaster />
     </>
   )
 }
