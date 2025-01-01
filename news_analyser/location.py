@@ -39,7 +39,7 @@ def get_nearby_locations(location_name):
     data = response.json()
     
     nearby_locations = [element['tags']['name'] for element in data['elements'] if 'name' in element['tags']]
-    return nearby_locations
+    return nearby_locations[:5]
 
 # example usage for location
 arr = get_nearby_locations("Ayanavaram, Chennai");

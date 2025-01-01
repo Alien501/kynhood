@@ -4,3 +4,6 @@
 
 # Local environment variables
 news_analyser/.env
+
+# Pycache virtual environment
+news_analyser/__pycache__
