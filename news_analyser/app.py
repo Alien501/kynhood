@@ -95,6 +95,21 @@ def news_for_location():
             "status": False,
             "message": str(e)
         }), 500
+        
+@app.route('/news', methods=['POST'])
+def news():
+    try:
+        data = request.get_json()
+        if not data or 'location' not in data:
+            return jsonify({"error": "Location is missing in the request body."}), 400
+        
+        location = data['location']
+        news = get_news(location)
+        return jsonify(news)
+    except ValueError as ve:
+        return jsonify({"error": str(ve)}), 400
+    except Exception as e:
+        return jsonify({"error": "An unexpected error occurred.", "details": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(
