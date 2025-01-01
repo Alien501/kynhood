@@ -76,7 +76,7 @@ npm run start
 
 ![Home Screen](/images/home.png)
 ![Read Screen](/images/read.png)
-[![Demo Video](/images/demo.mp4)](/images/demo.mp4)
+[![Demo Video](/images/home.png)](/images/demo.mp4)
 
 ---
 
