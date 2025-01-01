@@ -6,6 +6,9 @@ import TrendingPage from './page/Trending'
 import BookmarksPage from './page/Bookmarks'
 import AppLayout from './page/AppLayout'
 import ProfilePage from './page/Profile'
+import LandingPage from './page/Landing'
+import NotFoundPage from './page/NotFoundPage'
+import NewAccountPage from './page/NewAccount'
 
 
 function App() {
@@ -36,7 +39,7 @@ function App() {
         },
         {
           path: '/*',
-          
+          element: <NotFoundPage />
         }
       ]
     },
@@ -44,6 +47,14 @@ function App() {
       path: '/read',
       element: <ReadPage />
     },
+    {
+      path: '/landing',
+      element: <LandingPage />
+    },
+    {
+      path: '/sign-up',
+      element: <NewAccountPage />
+    }
   ])
 
   return (
